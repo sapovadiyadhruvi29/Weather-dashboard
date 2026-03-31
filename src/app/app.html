@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h1>🌤 Weather Dashboard</h1>
+
+  <app-search (searchCity)="fetchWeather($event)"></app-search>
+
+  <app-loader *ngIf="loading"></app-loader>
+
+  <app-error *ngIf="error" [message]="error"></app-error>
+  <app-search (searchCity)="fetchWeather($event)"></app-search>
+
+  <app-weather-card 
+    *ngIf="weatherData" 
+    [data]="weatherData">
+  </app-weather-card>
+
+</div>

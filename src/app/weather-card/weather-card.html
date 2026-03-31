@@ -1,0 +1,12 @@
+<div *ngIf="data" class="card">
+  <h2>{{ data.name }}</h2>
+
+  <h1>{{ data.main.temp }}°C</h1>
+
+  <p>{{ data.weather[0].main }}</p>
+
+  <div class="extra">
+    <p>Humidity: {{ data.main.humidity }}%</p>
+    <p>Wind: {{ data.wind.speed }} km/h</p>
+  </div>
+</div>
