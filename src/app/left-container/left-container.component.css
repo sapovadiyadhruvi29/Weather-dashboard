@@ -1,0 +1,30 @@
+.left-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-box,
+.weather-main-card,
+.forecast-card,
+.sun-card {
+  background: linear-gradient(145deg, #08152b, #0c1d3a);
+  border-radius: 22px;
+  padding: 20px;
+  color: white;
+}
+
+.weather-main-card {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  height: 220px;
+}

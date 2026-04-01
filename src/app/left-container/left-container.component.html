@@ -1,0 +1,27 @@
+<div class="left-wrapper">
+  <div class="search-box">
+    <input #cityInput placeholder="Search City..." (keyup.enter)="searchCity(cityInput.value)" />
+  </div>
+  <div class="weather-main-card">
+    <div class="weather-left">
+      <button class="country-btn">{{ weatherService.cityName }}</button>
+      <h1>{{ weatherService.dayName }}</h1>
+      <p>{{ weatherService.dateLabel }}</p>
+      <h2>{{ weatherService.temperature }}°C</h2>
+      <p>High: {{ weatherService.maxTemp }} Low: {{ weatherService.minTemp }}</p>
+    </div>
+    <div class="weather-right">
+      <div class="icon">🌤️</div>
+      <h3>{{ weatherService.condition }}</h3>
+      <p>Feels like {{ weatherService.temperature }}</p>
+    </div>
+  </div>
+  <div class="bottom-section">
+    <div class="forecast-card"><h3>Today / Week</h3></div>
+    <div class="sun-card">
+      <h3>Sunrise</h3>
+      <p>{{ weatherService.sunrise }}</p>
+      <p>{{ weatherService.sunset }}</p>
+    </div>
+  </div>
+</div>

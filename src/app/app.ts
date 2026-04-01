@@ -7,6 +7,7 @@ import { WeatherCardComponent } from './weather-card/weather-card';
 import { SearchComponent } from './search/search';
 import { LoaderComponent } from './loader/loader';
 import { ErrorComponent } from './error/error';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,7 +23,6 @@ import { ErrorComponent } from './error/error';
   styleUrl: './app.css'
 })
 export class App {
-
   weatherData: any;
   loading = false;
   error = '';
@@ -48,9 +48,4 @@ export class App {
       }
     });
   }
-  fetchWeather(city: any) {
-  this.weatherService.getWeather(city).subscribe((res: any) => {
-    this.weatherData = res;
-  });
-}
 }
