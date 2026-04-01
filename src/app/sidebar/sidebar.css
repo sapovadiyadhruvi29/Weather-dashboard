@@ -1,0 +1,30 @@
+.sidebar {
+    width: 80px;
+    height: 100vh;
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+li {
+    list-style: none;
+    margin: 24px 0;
+    cursor: pointer;
+    color: #cbd5e1;
+    transition: all 0.25s ease;
+}
+
+li:hover {
+    color: white;
+    transform: scale(1.1);
+}

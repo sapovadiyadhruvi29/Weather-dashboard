@@ -1,12 +1,12 @@
-<div *ngIf="data" class="card">
-  <h2>{{ data.name }}</h2>
+<div class="card" *ngIf="data">
+    <div class="left">
+        <h2>{{ data.location.name }}</h2>
+        <h1>{{ data.current.temp }}°C</h1>
+        <p>Feels like {{ data.current.feels_like }}°C</p>
+        <p>Wind {{ data.current.wind }} km/h</p>
+    </div>
 
-  <h1>{{ data.main.temp }}°C</h1>
-
-  <p>{{ data.weather[0].main }}</p>
-
-  <div class="extra">
-    <p>Humidity: {{ data.main.humidity }}%</p>
-    <p>Wind: {{ data.wind.speed }} km/h</p>
-  </div>
+    <div class="right">
+        <div class="weather-emoji">{{ weatherIcon }}</div>
+    </div>
 </div>

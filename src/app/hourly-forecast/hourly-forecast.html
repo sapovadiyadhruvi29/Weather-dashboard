@@ -1,0 +1,17 @@
+<div class="forecast-wrapper">
+    <div class="header">
+        <h2>Temperature Overview</h2>
+        <p>Today's temperature details</p>
+    </div>
+
+    <div class="hourly-scroll">
+        @for (h of forecastData; track trackByHour($index)) {
+        <div class="forecast-card">
+            <p class="time">{{ h.label }}</p>
+            <div class="weather-icon">{{ h.icon }}</div>
+            <h3>{{ h.temp }}°</h3>
+            <span class="rain">Live weather</span>
+        </div>
+        }
+    </div>
+</div>

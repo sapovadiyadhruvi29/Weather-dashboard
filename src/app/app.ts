@@ -1,51 +1,45 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { Component, OnInit } from '@angular/core';
+import { Sidebar } from './sidebar/sidebar';
+import { Searchbar } from './searchbar/searchbar';
+import { WeatherCard } from './weather-card/weather-card';
+import { Highlights } from './highlights/highlights';
+import { HourlyForecast } from './hourly-forecast/hourly-forecast';
 import { WeatherService } from './weather';
-
-import { WeatherCardComponent } from './weather-card/weather-card';
-import { SearchComponent } from './search/search';
-import { LoaderComponent } from './loader/loader';
-import { ErrorComponent } from './error/error';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
-    WeatherCardComponent,
-    SearchComponent,
-    LoaderComponent,
-    ErrorComponent
+    Sidebar,
+    Searchbar,
+    WeatherCard,
+    Highlights,
+    HourlyForecast,
   ],
-  providers: [WeatherService],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App {
-  weatherData: any;
-  loading = false;
-  error = '';
+export class App implements OnInit {
+  WeatherData: any = null;
 
   constructor(private weatherService: WeatherService) {}
 
-  ngOnInit() {
-    this.fetchWeather('Ahmedabad');
+  ngOnInit(): void {
+    this.loadDefaultCity();
   }
 
-  fetchWeather(city: string) {
-    this.loading = true;
-    this.error = '';
-
-    this.weatherService.getWeather(city).subscribe({
-      next: (res: any) => {
-        this.weatherData = res;
-        this.loading = false;
+  loadDefaultCity() {
+    this.weatherService.getWeatherByCity('Rajkot').subscribe({
+      next: (data) => {
+        this.WeatherData = data;
       },
-      error: () => {
-        this.error = 'City not found!';
-        this.loading = false;
-      }
+      error: (err) => {
+        console.error('Default city weather failed:', err);
+      },
     });
+  }
+
+  getData(data: any) {
+    this.WeatherData = data;
   }
 }

@@ -1,0 +1,43 @@
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 12px;
+    border-radius: 24px;
+    background: rgba(31, 41, 55, 0.7);
+    color: white;
+    box-sizing: border-box;
+}
+
+.left h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.left h1 {
+    font-size: 52px;
+    margin-bottom: 8px;
+}
+
+.left p {
+    font-size: 16px;
+}
+
+.right img {
+    width: 90px;
+    height: 90px;
+}
+
+.weather-emoji {
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

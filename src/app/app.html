@@ -1,17 +1,18 @@
 <div class="container">
+    <app-sidebar></app-sidebar>
 
-  <h1>🌤 Weather Dashboard</h1>
+    <div class="content">
+        <app-searchbar (weatherEvent)="getData($event)"></app-searchbar>
 
-  <app-search (searchCity)="fetchWeather($event)"></app-search>
+        <div class="dashboard-grid">
+            <div class="left-column">
+                <app-weather-card [data]="WeatherData"></app-weather-card>
+                <app-hourly-forecast [data]="WeatherData"></app-hourly-forecast>
+            </div>
 
-  <app-loader *ngIf="loading"></app-loader>
-
-  <app-error *ngIf="error" [message]="error"></app-error>
-  <app-search (searchCity)="fetchWeather($event)"></app-search>
-
-  <app-weather-card 
-    *ngIf="weatherData" 
-    [data]="weatherData">
-  </app-weather-card>
-
+            <div class="right-column">
+                <app-highlights [data]="WeatherData"></app-highlights>
+            </div>
+        </div>
+    </div>
 </div>

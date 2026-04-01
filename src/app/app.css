@@ -1,42 +1,41 @@
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-}
-
 .container {
-  text-align: center;
-  padding: 20px;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #0b1220, #111827);
+    color: white;
+    overflow: hidden;
 }
 
-.search-box input {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
+.content {
+    flex: 1;
+    height: 100vh;
+    padding: 12px;
+    display: grid;
+    grid-template-rows: 56px 1fr;
+    gap: 12px;
+    overflow: hidden;
 }
 
-.search-box button {
-  padding: 10px;
-  margin-left: 10px;
-  background: #38bdf8;
-  border: none;
-  color: black;
-  cursor: pointer;
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 12px;
+    height: calc(100vh - 80px);
+    min-height: 0;
+    padding-bottom: 8px;
+    box-sizing: border-box;
 }
 
-.card {
-  margin: 20px auto;
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
-  width: 250px;
+.left-column {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) 250px;
+    gap: 16px;
+    min-height: 0;
 }
 
-.loading {
-  color: yellow;
-}
-
-.error {
-  color: red;
+.right-column {
+    height: 100%;
+    min-height: 0;
+    display: flex;
 }
