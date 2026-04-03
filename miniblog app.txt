@@ -1,0 +1,185 @@
+src/app/
+ ├── home/
+ ├── post-detail/
+ ├── about/
+ ├── not-found/
+ ├── app-routing.module.ts
+ ├── app.component.html
+
+
+app-routing.ts
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
+import { AboutComponent } from './about/about.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'posts/:id', component: PostDetailComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: NotFoundComponent } // 404
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+
+:id → dynamic route parameter
+** → wildcard (404 page)
+
+=================
+app.html(navbar)
+
+<nav style="background:#333; padding:10px;">
+  <a routerLink="/" routerLinkActive="active">Home</a> |
+  <a routerLink="/about" routerLinkActive="active">About</a>
+</nav>
+
+<hr>
+
+<router-outlet></router-outlet>
+
+==============================
+app.ts
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
+import { AboutComponent } from './about/about.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PostDetailComponent,
+    AboutComponent,
+    NotFoundComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+========================================
+app.css
+a {
+  color: white;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+=======================================
+
+Home.ts
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html'
+})
+export class HomeComponent {
+
+  posts = [
+    { id: 1, title: 'Post 1', body: 'This is first post' },
+    { id: 2, title: 'Post 2', body: 'This is second post' },
+    { id: 3, title: 'Post 3', body: 'This is third post' }
+  ];
+}
+
+====================================
+
+home.html
+
+<h2>Blog Posts</h2>
+
+<div *ngFor="let post of posts">
+  <h3>{{post.title}}</h3>
+  <p>{{post.body}}</p>
+
+  <a [routerLink]="['/posts', post.id]">Read More</a>
+  <hr>
+</div>
+
+==============================
+
+post-detail.ts
+
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-post-detail',
+  templateUrl: './post-detail.component.html'
+})
+export class PostDetailComponent {
+
+  postId: any;
+
+  posts = [
+    { id: 1, title: 'Post 1', body: 'Full content of post 1' },
+    { id: 2, title: 'Post 2', body: 'Full content of post 2' },
+    { id: 3, title: 'Post 3', body: 'Full content of post 3' }
+  ];
+
+  selectedPost: any;
+
+  constructor(private route: ActivatedRoute) {
+    this.postId = this.route.snapshot.paramMap.get('id');
+
+    this.selectedPost = this.posts.find(p => p.id == this.postId);
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
+}
+
+
+======================================
+
+postdetail.html
+
+<h2>Post Detail</h2>
+
+<div *ngIf="selectedPost">
+  <h3>{{selectedPost.title}}</h3>
+  <p>{{selectedPost.body}}</p>
+</div>
+
+<br>
+<button (click)="goHome()">Back to Home</button>
+
+=========================================
+
+about.html
+
+<h2>About Page</h2>
+<p>This is a simple blog app built in Angular.</p>
+
+
+========================================
+
+notfound.html
+
+<h2>404 - Page Not Found</h2>
+<a routerLink="/">Go Home</a>
+
